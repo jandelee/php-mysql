@@ -1,0 +1,11 @@
+---
+applications:
+- name: php-mysql
+  memory: 128M
+  instances: 1
+  buildpacks:
+  - php_buildpack
+  services:
+  - mysql-test
+  path: .
+  random-route: true
