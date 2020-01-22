@@ -28,15 +28,6 @@ This is an example PHP application which can be run on CloudFoundry with MySQL.
 
   Access your application URL in the browser.
 
-### How It Works
-
-When you push the application here's what happens.
-
-1. The local bits are pushed to your target.  This is small, six files around 30k. It includes the changes we made and a build pack extension for PHPMyAdmin.
-1. The server downloads the [PHP Build Pack] and runs it.  This installs HTTPD and PHP.
-1. The build pack sees the extension that we pushed and runs it.  The extension downloads the stock PHPMyAdmin file from their server, unzips it and installs it into the `htdocs` directory.  It then copies the rest of the files that we pushed and replaces the default PHPMyAdmin files with them.  In this case, it's just the `config.inc.php` file.
-1. At this point, the build pack is done and CF runs our droplet.
-
 ### Notes
 
 This php app uses the PDO object; this requires the pdo and pdo_mysql extensions to be enabled; this is taken care of in the extensions.ini file in the .bp_config\php\php.ini.d subdirectory.
