@@ -4,8 +4,10 @@ function escape($html) {
     return htmlspecialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 }
 
+$service_name = "p.mysql";   // This is what is listed in the "service" column when running the "cf marketplace" command
+
 $vcap_services = json_decode($_ENV['VCAP_SERVICES'], true);
-$uri = $vcap_services['p.mysql'][0]['credentials']['uri'];
+$uri = $vcap_services[$service_name][0]['credentials']['uri'];
 $db_creds = parse_url($uri);
 $dbname = "test";
 
