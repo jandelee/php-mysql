@@ -19,8 +19,6 @@ This is an example PHP application which can be run on CloudFoundry with MySQL.
 
 1. If the service name for the MySQL service is not p.mysql, make sure to change the value that the service_name variable is set to in read.php, around line #7.  The service name is what is displayed in the "service" column when executing the "cf marketplace" command.
 
-1. In the MySQL service, create a database with the name "test", and with columns id, firstname, lastname, and email.  Populate several rows of data into this table; this data will be displayed by the application.
-
 1. Edit the `manifest.yml` file. If your service is not named `mysql-test`, change the name in the manifest file. Random route is set to avoid conflicts with other users.
 
 1. Push it to CloudFoundry.
@@ -29,7 +27,10 @@ This is an example PHP application which can be run on CloudFoundry with MySQL.
    cf push
    ```
 
-  Access your application URL in the browser.
+
+1. Towards the end of the cf push output, you will see the route where the app is available at.  Open this route in the browser of your choice.
+
+1. The app is displayed, with a menu of three options.  The Databases option shows what databases are present in the MySQL service; the Setup option will create the test database in the MySQL service, along with creating and populating a users table; the Read option shows the contents of the users table in the test database.
 
 ### Notes
 

@@ -9,11 +9,10 @@ $service_name = "p.mysql";   // This is what is listed in the "service" column w
 $vcap_services = json_decode($_ENV['VCAP_SERVICES'], true);
 $uri = $vcap_services[$service_name][0]['credentials']['uri'];
 $db_creds = parse_url($uri);
-$dbname = "test";
 
-$dsn = "mysql:host=" . $db_creds['host'] . ";port=" . $db_creds['port'] . ";dbname=" . $dbname;
+$dsn = "mysql:host=" . $db_creds['host'] . ";port=" . $db_creds['port'];  // note the absence of the dbname parameter
 
-$sql = "SELECT * FROM users";
+$sql = "SHOW DATABASES";
 
 try  {
     $connection = new PDO($dsn, $db_creds['user'], $db_creds['pass']);
@@ -36,29 +35,23 @@ if (isset($_POST['submit'])) {
     <table>
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email Address</th>
+          <th>Database</th>
         </tr>
       </thead>
       <tbody>
       <?php foreach ($result as $row) : ?>
         <tr>
-          <td><?php echo escape($row["id"]); ?></td>
-          <td><?php echo escape($row["firstname"]); ?></td>
-          <td><?php echo escape($row["lastname"]); ?></td>
-          <td><?php echo escape($row["email"]); ?></td>
+          <td><?php echo escape($row["Database"]); ?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
     </table>
     <?php } else { ?>
-      <blockquote>No results found for users table.</blockquote>
+      <blockquote>No results found for <?php echo escape($_POST['location']); ?>.</blockquote>
     <?php } 
 } ?> 
 
-<h2>List users</h2>
+<h2>List Databases</h2>
 
 <form method="post">
   <input type="submit" name="submit" value="View Results">

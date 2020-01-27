@@ -15,7 +15,13 @@
 
     <ul>
       <li>
-        <a href="read.php"><strong>Read</strong></a> - display tables
+        <a href="databases.php"><strong>Databases</strong></a> - Display databases
+      </li>
+      <li>
+        <a href="setup.php"><strong>Setup</strong></a> - Create test database
+      </li>
+      <li>
+        <a href="read.php"><strong>Read</strong></a> - Display tables in test database
       </li>
     </ul>
   </body>
